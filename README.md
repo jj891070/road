@@ -1,6 +1,6 @@
 VM Guest OS的Lan IP  : 192.168.153.32
-Week : 1
-     Project ： road_system 
+#Week : 1
+    ## Project ： road_system 
            http://192.168.153.32/road_system/public/adminsearch
            說明：讓admin可以尋找自己所建立的賽事
            完成日期：2017/02/27
