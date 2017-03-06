@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <head>
        <title>Customer</title>
   </head>
   <body>
-    <form action="store" method="post">
-    {{ csrf_field() }}
+    
       <div class="content">
         <div class="container">
           <div class="row">
@@ -38,15 +38,34 @@
 
                   
                 </table>
-
-                <td><label>賽事編號</label>
-                <input type="text" name="run_event_id" >
-                <input type="submit" name="submit" value="加入"></td>
+                <form action="store" method="post" onsubmit="return prevent_no_data()">
+                  {{ csrf_field() }}
+                  <td><label>賽事編號</label>
+                  <input id="input_id" type="text" name="run_event_id" >
+                  <input id="submit_id" type="submit" name="submit" value="加入" ></td>
+                </form>
             </div>
           </div>
         </div>
       </div>
-    </form>
+
+    <script>
+    //$data=$('input[type="text"]').val();
+          function prevent_no_data()
+          {
+            $data=$('#input_id').val();
+            if($data=="")
+            {
+              alert("你忘了輸入賽事編號");
+              $('#input_id').focus();
+              return false;
+              
+            }
+            return true;
+            
+          }
+      </script>>
   </body>
 </html>
+
 @endsection

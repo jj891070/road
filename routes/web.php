@@ -26,7 +26,8 @@ Route::get('adminupdate/{id}','RunEventController@update');//admin update run ev
 Route::post('adminsave','RunEventController@save');//admin save update run event
 
 Route::get('adminrundetail/{id}','RunEventController@rundetail');//admin run detail 
-
+Route::get('adminrungrade/{id}','RunEventController@rungrade');//admin rungrade
+Route::get('adminSaverungrade','RunEventController@save_rungrade');//admin save rungrade
 
 Route::delete('admindelete','RunEventController@delete');//admin delete run event
 //---------------------------------------------------------------------------------

@@ -8,7 +8,8 @@ class RunEventItem extends Model
 {
     //
     protected $table = 'run_event_item';
-    protected $fillable=['run_event_id','client_id'];
+    // protected $fillable=['run_event_id','client_id'];
+    protected $guarded = [];
     
     
     public function run_event()//relation for run_event

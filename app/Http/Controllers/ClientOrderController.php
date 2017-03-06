@@ -34,14 +34,11 @@ class ClientOrderController extends Controller
 
     public function show()//秀出已加入賽事
     {
-    	
+
         $user = Auth::user();
-         //dd($user->run_event_item);
-        
-        //dd($user);
-    	//dd($user->run_event_item[0]->run_event);
-        //dd($client_show_added);
-    	return view('client_show_added',array('client_show_added'=>$user));
+    	return view('client_show_added', [
+            'items'=>$user->run_event_item,
+        ]);
     }
 
     public function delete(Request $req)//刪除已加入賽事

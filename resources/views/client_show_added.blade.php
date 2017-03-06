@@ -2,14 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <head>
-       <title>Customer</title>
-  </head>
-  <body>
-         {{ csrf_field() }}
     <div class="content">
       <div class="container">
 	    <div class="row">
@@ -23,18 +15,17 @@
                       <td>刪除賽事</td>
                     </tr>
                  
-                    @foreach($client_show_added->run_event_item as $row)
-                                     
+                    @foreach($items as $item)
                     <tr>
-                      <td>{{$row->run_event->name}}</td>
-                      <td>{{$row->run_event->hold_time}}</td>
-                      <td>{{$row->run_event->admin_email}}</td>
-                      <td>{{$row->achievement}}</td>
+                      <td>{{ $item->run_event->name }}</td>
+                      <td>{{$item->run_event->hold_time}}</td>
+                      <td>{{$item->run_event->admin_email}}</td>
+                      <td>{{$item->achievement}}</td>
                       <td>
-                        <form action="delete" method="POST">
+                        <form action="delete" method="POST" onsubmit="return prevent_delete()">
                           {{ method_field('DELETE') }}
                           <input type="submit" name="submit" value="刪除">
-                          <input type="hidden" name="id" value="{{$row['id']}}">
+                          <input type="hidden" name="id" value="{{$item->id}}">
                           {{csrf_field()}}
                         </form>
                       </td>
@@ -49,6 +40,16 @@
 	    </div>
 	  </div>
     </div>
-  </body>
-</html>
+
+    <script>
+      function prevent_delete()
+      {
+        var aa=confirm("確定要刪除嗎?");
+        if(aa==false)
+        {
+          return false;
+        }
+        return true;
+      }
+    </script>
 @endsection

@@ -38,7 +38,7 @@ class RunEventController extends Controller
         return view('run_detail',array('data'=>$data));
     }     
 
-    public function postRundetail($id)//未完成
+    public function rungrade($id)//未完成
     {
         return response()->json([
             'a' => '未完賽',
@@ -48,6 +48,23 @@ class RunEventController extends Controller
         //dd($data);
         return view('run_detail',array('data'=>$data));
     }     
+     
+    public function save_rungrade(Request $req)//ajax呼叫儲存修改成績
+    {
+        $id = $req->input('id');
+
+        $data=[
+            'id'=>$req->input('id'),
+            'achievement'=>$req->input('grade'),
+        ];
+
+        $item = RunEventItem::find($id)->update($data);
+
+        return response()->json([
+            'result' => 'success',
+            'row' => $item
+        ]);
+    }
 
     public function save(Request $req)//儲存修改賽項
     {
@@ -73,7 +90,11 @@ class RunEventController extends Controller
 
     public function create()//建立賽項
     {
-        return view('create_event')->with('new_event', '建立賽事');
+        $user = Auth::user();
+        return view('create_event', [
+            'user' => $user,
+            'new_event'=>'建立賽項',
+        ]);
     }
 
     public function store(Request $req)//儲存建立賽項
